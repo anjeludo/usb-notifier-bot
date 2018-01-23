@@ -1,16 +1,18 @@
 package com.anjeludo.usbnotifierbot.bot.impl;
 
 import org.telegram.telegrambots.ApiContextInitializer;
+
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
-
 import com.anjeludo.usbnotifierbot.bot.IBot;
-
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 @AllArgsConstructor
+@Slf4j
 public class UsbNotifierBot extends TelegramLongPollingBot  implements IBot {
 	private String token;
 	private String botName;
@@ -59,6 +61,7 @@ public class UsbNotifierBot extends TelegramLongPollingBot  implements IBot {
 	public void onUpdateReceived(Update update) {
 		 // We check if the update has a message and the message has text
 	    if (update.hasMessage() && update.getMessage().hasText()) {
+	    	log.debug("Chat id " + update.getMessage().getChatId());
 	        SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
 	                //.setChatId(update.getMessage().getChatId())
 	        		.setChatId(chatId)

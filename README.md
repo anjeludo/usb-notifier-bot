@@ -10,3 +10,5 @@ This application uses:
 - Vaadin for the user interface
 
 The application could be launched as a service. Each time a USB device is connected or disconnected, it will detect it, generating an event (using Spring events) which will be listened to and sent to the telegram bot (the bot must be configured en in application.properties file) and the user interface (in http://localhost).
+
+To run this app clone this repo and execute mvn spring-boot:run
